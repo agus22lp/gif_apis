@@ -1,0 +1,17 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  port: 3306
+  host: 127.0.0.1
+  database: robly_development
+  username: root
+  password: root
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  port: 3306
+  host: 127.0.0.1
+  database: robly_test
+  username: root
+  password: root
