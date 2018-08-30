@@ -8,9 +8,8 @@ class Giphy
   end
 
   def import(source, trim)
-    self.class.post("/v1/gifs", { body: { source_image_url: "https://www.youtube.com/watch?v=jhyANGHDDH8",
-    																			api_key: '4RLrMZipKlEVEV1vxRkDQy7fuZGMFsVq',
-    																			tags: 'nba, basket, ball' }.to_json, headers: { 'Content-Type' => 'application/json' }})
+    self.class.post("/v1/gifs", { query: {
+        source_image_url: "https://www.youtube.com/watch?v=jhyANGHDDH8", api_key: 'sxAXwfwrN99fjjIgQJgTPU6st9MiFiiY', tags: 'nba, basket, ball' }})
   end
 end
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"
