@@ -10,7 +10,6 @@ class Giphy
   def import(source, trim)
     self.class.post("/v1/gifs", { body: { source_image_url: "https://www.youtube.com/watch?v=jhyANGHDDH8",
     																			api_key: '4RLrMZipKlEVEV1vxRkDQy7fuZGMFsVq&q',
-    																			username: 'username',
     																			tags: 'nba, basket, ball' }.to_json, headers: { 'Content-Type' => 'application/json' }})
   end
 end
