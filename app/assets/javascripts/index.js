@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  plyr.setup("#plyr-youtube");
+  //plyr.setup("#plyr-youtube");
 
 	$("#link").bind("paste", function(e){
 	    setTimeout(function () {
