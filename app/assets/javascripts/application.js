@@ -13,4 +13,5 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require plyr
 //= require_tree .

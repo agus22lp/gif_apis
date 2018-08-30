@@ -121,6 +121,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    plyr-rails (3.3.7)
     popper_js (1.14.3)
     public_suffix (3.0.3)
     puma (3.12.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mini_racer
+  plyr-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
   sass-rails (~> 5.0)

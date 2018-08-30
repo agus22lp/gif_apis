@@ -1,11 +1,15 @@
 $( document ).ready(function() {
+  plyr.setup("#plyr-youtube");
+
 	$("#link").bind("paste", function(e){
 	    setTimeout(function () {
-	    	$.get( "/home/youtube", { url: $('#link').val() } )
+	    	$.get( "/home/youtube", { url: $('#link-input').val() } )
 				  .done(function( data ) {
-				  	alert(data);
+				  	$('#iframe-video').attr('src', $('#link-input').val());
+				    $('.card').show();
 				    $('.card-title').text(data.title);
-				    $('.card-text').text(data.duration);
+				    $('#duration').attr('max', data.duration);
+				    
 				  });
     }, 100);
 	} );
