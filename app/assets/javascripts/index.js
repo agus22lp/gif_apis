@@ -26,9 +26,6 @@ $( document ).ready(function() {
     event.detail.plyr.currentTime = startTime;
   });
 
-
-  //plyr.setup("#plyr-youtube");
-
 	$("#link-input").bind("paste", function(e){
     setTimeout(function () {
       $.get( "/home/youtube", { url: $('#link-input').val() } )
@@ -56,8 +53,9 @@ $( document ).ready(function() {
           $('.range-slider').jRange('updateRange', '0,'+ data.duration.toString(), '0,10');
 
           player.source = {type: 'video', sources: [{ src: data.id, provider: 'youtube' }]};
+          player.poster = 'https://img.youtube.com/vi/' + data.id + '/0.jpg';
         });
     },100);
-    //player.play();
+
 	});
 });
