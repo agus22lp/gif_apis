@@ -11,10 +11,10 @@ $( document ).ready(function() {
   });
 
   //imitate loop with callbacks
-  //player.on('ready', event => {
-  //  event.detail.plyr.currentTime = startTime;
-  //  event.detail.plyr.play();
-  //});
+  player.on('ready', event => {
+    event.detail.plyr.currentTime = startTime;
+    event.detail.plyr.play();
+  });
 
   player.on('timeupdate', event => {
     if(event.detail.plyr.currentTime >= (startTime + gifTime)){
@@ -35,7 +35,7 @@ $( document ).ready(function() {
         .done(function( data ) {
           $('.video-details').removeClass('d-none');
           $('.video-title').text(data.title);
-          $('#plyr-youtube').attr('data-plyr-embed-id', data.id);
+          //$('#plyr-youtube').attr('data-plyr-embed-id', data.id);
           $('.range-slider').jRange({
 				    from: 0,
 				    to: data.duration,
@@ -54,8 +54,10 @@ $( document ).ready(function() {
 				    }
 				  });
           $('.range-slider').jRange('updateRange', '0,'+ data.duration.toString(), '0,10');
-          player.play();
+
+          player.source = {type: 'video', sources: [{ src: data.id, provider: 'youtube' }]};
         });
     },100);
-  });
+    //player.play();
+	});
 });
