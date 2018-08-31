@@ -26,24 +26,6 @@ $( document ).ready(function() {
     event.detail.plyr.currentTime = startTime;
   });
 
-  jrange = $('.range-slider').jRange({
-    from: 0,
-    to: 100,
-    step: 1,
-    format: '%s',
-    width: 300,
-    showLabels: true,
-    isRange : true,
-    ondragend: function(value){
-    	arrayVal = value.split(',');
-    	if ((startTime != parseInt(arrayVal[0])) || (gifTime != parseInt(arrayVal[1] - parseInt(arrayVal[0])))) {
-    		player.currentTime = parseInt(arrayVal[0]);
-    	}
-    	startTime = parseInt(arrayVal[0]);
-    	gifTime = parseInt(arrayVal[1]) - parseInt(arrayVal[0]);
-    }
-  });
-
 
   //plyr.setup("#plyr-youtube");
 
@@ -54,6 +36,23 @@ $( document ).ready(function() {
           $('.video-details').removeClass('d-none');
           $('.video-title').text(data.title);
           $('#plyr-youtube').attr('data-plyr-embed-id', data.id);
+          $('.range-slider').jRange({
+				    from: 0,
+				    to: data.duration,
+				    step: 1,
+				    format: '%s seconds',
+				    width: 600,
+				    showLabels: true,
+				    isRange : true,
+				    ondragend: function(value){
+				    	arrayVal = value.split(',');
+				    	if ((startTime != parseInt(arrayVal[0])) || (gifTime != parseInt(arrayVal[1] - parseInt(arrayVal[0])))) {
+				    		player.currentTime = parseInt(arrayVal[0]);
+				    	}
+				    	startTime = parseInt(arrayVal[0]);
+				    	gifTime = parseInt(arrayVal[1]) - parseInt(arrayVal[0]);
+				    }
+				  });
           $('.range-slider').jRange('updateRange', '0,'+ data.duration.toString(), '0,10');
           player.play();
         });
