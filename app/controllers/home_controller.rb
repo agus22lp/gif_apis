@@ -3,8 +3,8 @@ class HomeController < ApplicationController
   end
 
   def youtube
-  	info = Youtube.new(params[:url]).info
+  	video = Youtube.new(params[:url]).info
 
-  	render json: { title: info.title, duration: info.duration } 
+  	render json: { id: video.id, title: video.title, duration: video.duration }
   end
 end

@@ -4,6 +4,11 @@
         <h1>Create new gif<span class="pull-right label label-default"> :)</span></h1>
     </div>
 
+  </br>  
+  https://www.youtube.com/watch?v=jhyANGHDDH8
+  </br>
+  https://www.youtube.com/watch?v=ADKBqNDm2Lo
+  </br>
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -37,28 +42,25 @@
 	</br>
   <div class="row">
     <div class="col-md-8 card" >
-      <div id="plyr-youtube" data-plyr-provider="youtube" data-plyr-embed-id="jhyANGHDDH8"></div>
+      <div id="video-div">
+        <div id="plyr-youtube" data-plyr-provider="youtube" data-plyr-embed-id="jhyANGHDDH8"></div>
+      </div>
+
       <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
 
       <!--<div id='plyr-youtube' data-type="youtube" data-video-id=""></div>-->
       <div class="card-body">
         <h5 class="card-title"></h5>
-        <p class="card-text">Start Time</p>
-        <input id="start" type="range" min="0" max="" step="1" value="0"/>
-        <p class="card-text">Duration</p>
-        <input id="duration" type="range" min="0" max="" step="1" value="0"/>
+        <p>
+  			<label for="amount">Start time - Duration range:</label>
+  			<div class="demo-output">
+            	<input class="range-slider" type="hidden" value="25,75"/>
+            </div>
+		</p>
+        <div id="slider-range"></div>
         </br>
         <button id="link-create" class="btn btn-primary">Create</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-<script>
-  $( document ).ready(function() {
-    const player = new Plyr('#plyr-youtube');
-  });
-</script>
