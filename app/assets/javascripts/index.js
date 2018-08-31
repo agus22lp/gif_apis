@@ -26,6 +26,16 @@ $( document ).ready(function() {
     event.detail.plyr.currentTime = startTime;
   });
 
+  
+
+  $("#button-create").on("click", function(e){
+  	ranges = $('.range-slider').val().split(',');
+
+  	$.post('/home/upload', { url: $('#link-input').val(), start : ranges[0], end: ranges[1]}, 
+    	function(returnedData){
+         console.log(returnedData);
+		});
+  });
 
   //plyr.setup("#plyr-youtube");
 
@@ -40,7 +50,7 @@ $( document ).ready(function() {
 				    from: 0,
 				    to: data.duration,
 				    step: 1,
-				    format: '%s seconds',
+				    format: '%s sec',
 				    width: 600,
 				    showLabels: true,
 				    isRange : true,
