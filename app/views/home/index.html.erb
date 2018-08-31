@@ -18,19 +18,20 @@
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Upload a video</a>
     </li>
   </ul>
-	<div class="tab-content" id="myTabContent">
+
+  <div class="tab-content" id="myTabContent">
 	  <div class="tab-pane fade show active" id="link" role="tabpanel" aria-labelledby="link-tab">
 	  	<form>
 		  <div class="form-group">
 		  	</br>
 		  	<h5>
   				ADD ANY URL
-  				<small class="text-muted">We support YouTube, Vimeo, and GIPHY links!</small>
+  				<small class="text-muted">We support YouTube and Vimeo links!</small>
 			</h5>
 			</br>
-		  	 
+
 		    <label for="exampleInputEmail1">Link URL</label>
-		    <input type="text" class="form-control" id="link-input" placeholder="Copy and paste video, GIF, or image URL">
+		    <input type="text" class="form-control" id="link-input" placeholder="Copy and paste video">
 		  </div>
 
 		  <button id="link-submit" class="btn btn-primary">Submit</button>
@@ -39,7 +40,15 @@
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
 	</div>
 
-	</br>
+
+  <div class="row">
+    <div class="col-md-8" >
+      <div id="video-div">
+        <div id="plyr-youtube" data-plyr-provider="youtube" data-plyr-embed-id="jhyANGHDDH8"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-8 card" >
       <div id="video-div">
