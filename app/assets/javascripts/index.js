@@ -36,11 +36,11 @@ $( document ).ready(function() {
     isRange : true,
     ondragend: function(value){
     	arrayVal = value.split(',');
-    	if ((startTime != parseInt(arrayVal[0])) || (gifTime != parseInt(arrayVal[1]))) {
+    	if ((startTime != parseInt(arrayVal[0])) || (gifTime != parseInt(arrayVal[1] - parseInt(arrayVal[0])))) {
     		player.currentTime = parseInt(arrayVal[0]);
     	}
     	startTime = parseInt(arrayVal[0]);
-    	gifTime = parseInt(arrayVal[1]);
+    	gifTime = parseInt(arrayVal[1]) - parseInt(arrayVal[0]);
     }
   });
 
