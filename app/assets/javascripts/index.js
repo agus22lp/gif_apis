@@ -1,29 +1,31 @@
 $( document ).ready(function() {
+
+  var startTime = 170;
+  var gifTime = 3;
+
   const player = new Plyr('#plyr-youtube', {
     debug: true,
     controls: [],
     muted: true,
     clickToPlay: false,
-    //resetOnEnd: true,
-    autoplay: true,
     fullscreen: { enabled: false }
   });
 
-
-
-  
   //imitate loop with callbacks
   player.on('ready', event => {
-    event.detail.plyr.currentTime = 170;
+    event.detail.plyr.currentTime = startTime;
+    event.detail.plyr.play();
   });
 
   player.on('timeupdate', event => {
-    if(event.detail.plyr.currentTime >= 175){
-      event.detail.plyr.currentTime = 170;
+    if(event.detail.plyr.currentTime >= (startTime + gifTime)){
+      event.detail.plyr.currentTime = startTime;
     }
   });
 
-
+  player.on('ended', event => {
+    event.detail.plyr.currentTime = startTime;
+  });
 
 
 
