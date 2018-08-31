@@ -29,11 +29,13 @@ $( document ).ready(function() {
   
 
   $("#button-create").on("click", function(e){
+  	$("#button-create").text('Uploading!');
+  	document.getElementById("button-create").disabled = true; 
   	ranges = $('.range-slider').val().split(',');
 
   	$.post('/home/upload', { url: $('#link-input').val(), start : ranges[0], end: ranges[1]}, 
     	function(returnedData){
-         console.log(returnedData);
+         location.reload();
 		});
   });
 

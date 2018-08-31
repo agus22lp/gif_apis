@@ -20,8 +20,8 @@ class HomeController < ApplicationController
   	filename = File.dirname(__FILE__) + '/../../txt/videos.txt'
   	client = GifsDotCom.new('')
 
-  	response = client.import(params[:url], { start: params[:start], end: params[:end] })
-  	open(filename, 'a') { |f| f << response.parsed_response["success"]["files"]["gif"] }
+  	response = client.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
+  	open(filename, 'a') { |f| f << "\n " + response.parsed_response["success"]["files"]["gif"] }
   	render json: { status: 'ok' }
   end
 end
