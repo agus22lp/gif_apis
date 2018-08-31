@@ -14,7 +14,6 @@
   </div>
 </div>
 
-
 <div class="row">
   <div class="col">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -44,19 +43,17 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row video-details">
           <div class="col-6" id="video-div">
             <div id="plyr-youtube" data-plyr-provider="youtube" data-plyr-embed-id="jhyANGHDDH8"></div>
           </div>
           <div class="col-6">
             <div class="form-group">
-              <label for="exampleInputEmail1"><h5>Title</h5></label>
+              <h5 class="video-title"></h5>
             </div>
-            <div class="form-group">
-              <label>Start</label>
-            </div>
-            <div class="form-group">
-              <label>Duration</label>
+  			<label for="amount">Start time - Duration range:</label>
+  			<div class="demo-output">
+            	<input class="range-slider" type="hidden" value="25,75"/>
             </div>
           </div>
         </div>
