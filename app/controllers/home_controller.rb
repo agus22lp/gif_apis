@@ -10,10 +10,14 @@ class HomeController < ApplicationController
 		end
   end
 
-  def youtube
-  	video = Youtube.new(params[:url]).info
-
-  	render json: { id: video.id, title: video.title, duration: video.duration }
+  def video_info
+    url = params[:url]
+    if url.include?("youtube") || url.include?("vimeo")
+      video = VideoInfo.new(params[:url])
+      render json: { video: video, status: 'ok' }
+    else
+  	  render json: { status: 'error' }
+    end
   end
 
   def upload
