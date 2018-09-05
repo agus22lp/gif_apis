@@ -2,9 +2,10 @@ class Youtube
   include HTTParty
   include UrlVideoParser
   base_uri 'https://www.googleapis.com'
+  debug_output $stdout
 
   def initialize(key)
-    @key = 'AIzaSyDy65fOEPSdFx9cAprOer7GJovtgZNHKf8'
+    @key = TestGif::Application.credentials.youtube
   end
 
   def get_info(link)

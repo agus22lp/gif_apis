@@ -2,14 +2,15 @@ class Giphy
   include HTTParty
   base_uri 'https://upload.giphy.com'
   debug_output $stdout # <= will spit out all request details to the console
+  GIPHY_URL = 'https://giphy.com/gifs/'
 
-  def initialize(key)
-    @key = '4RLrMZipKlEVEV1vxRkDQy7fuZGMFsVq'
+  def initialize
+    @key = 'sxAXwfwrN99fjjIgQJgTPU6st9MiFiiY'
   end
 
   def import(source, trim)
-    self.class.post("/v1/gifs", { query: {
-        source_image_url: "https://www.youtube.com/watch?v=jhyANGHDDH8", api_key: 'sxAXwfwrN99fjjIgQJgTPU6st9MiFiiY', tags: 'nba, basket, ball' }})
+    response = self.class.post("/v1/gifs", { query: { source_image_url: source, api_key: @key }})
+    GIPHY_URL + response.parsed_response["data"]["id"] + '/html5'
   end
 end
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"

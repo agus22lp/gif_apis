@@ -22,10 +22,10 @@ class HomeController < ApplicationController
 
   def upload
   	filename = File.dirname(__FILE__) + '/../../txt/videos.txt'
-  	client = GifsDotCom.new('')
-
-  	response = client.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
-  	open(filename, 'a') { |f| f << "\n " + response.parsed_response["success"]["files"]["gif"] }
+  	client = Giphy.new
+    response = client.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
+    
+  	open(filename, 'a') { |f| f << "\n " + response }
   	render json: { status: 'ok' }
   end
 end
