@@ -1,10 +1,10 @@
 class VideoInfo
-  include UrlVideoParser
-	attr_accessor :duration, :id, :image_url, :title, :provider
+	include UrlVideoParser
+  attr_accessor :duration, :id, :image_url, :title, :provider
 
   def initialize(link)
   	if link.include?('youtube')
-    	video = Youtube.new(1).get_info(link).parsed_response["items"][0]
+    	video = Youtube.get_info(get_id(link)).parsed_response["items"][0]
     	@id = video["id"]
   		@duration = duration(video["contentDetails"]["duration"])
   		@image_url = 'https://img.youtube.com/vi/' + @id + '/0.jpg'

@@ -3,12 +3,9 @@ class GifsDotCom
   base_uri 'https://api.gifs.com'
   #debug_output $stdout # <= will spit out all request details to the console
 
-  def initialize
-    @key = 'gifs56d63999f0f34'
-  end
-
-  def import(source, trim)
-    self.class.post("/media/import", { body: { source: source, trim: trim }.to_json, headers: { 'Gifs-API-Key' => @key, 'Content-Type' => 'application/json' }}).parsed_response["success"]["files"]["gif"]
+  def self.import(source, trim)
+    post("/media/import", { body: { source: source, trim: trim }.to_json, headers: { 'Gifs-API-Key' => TestGif::Application.credentials.gifs_dot_com,
+      'Content-Type' => 'application/json' }}).parsed_response["success"]["files"]["gif"]
   end
 end
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"

@@ -1,15 +1,11 @@
 class Giphy
   include HTTParty
   base_uri 'https://upload.giphy.com'
-  debug_output $stdout # <= will spit out all request details to the console
+  #debug_output $stdout # <= will spit out all request details to the console
   GIPHY_URL = 'https://giphy.com/gifs/'
 
-  def initialize
-    @key = 'sxAXwfwrN99fjjIgQJgTPU6st9MiFiiY'
-  end
-
-  def import(source, trim)
-    response = self.class.post("/v1/gifs", { query: { source_image_url: source, api_key: @key }})
+  def self.import(source, trim)
+    response = post("/v1/gifs", { query: { source_image_url: source, api_key: TestGif::Application.credentials.giphy }})
     GIPHY_URL + response.parsed_response["data"]["id"] + '/html5'
   end
 end
