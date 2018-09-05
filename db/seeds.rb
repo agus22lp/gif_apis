@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Giphy.create([{ api_id: '14xhcyeSNjhm58uPOh' }, { api_id: 'sRHZenkkwXK2Ka0viT' }])
