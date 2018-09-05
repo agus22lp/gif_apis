@@ -27,8 +27,6 @@ $( document ).ready(function() {
     event.detail.plyr.currentTime = startTime;
   });
 
-  
-
   $("#button-create").on("click", function(e){
   	$("#button-create").text('Uploading!');
   	document.getElementById("button-create").disabled = true; 
@@ -36,7 +34,8 @@ $( document ).ready(function() {
 
   	$.post('/home/upload', { url: $('#link-input').val(), start : ranges[0], end: ranges[1]}, 
     	function(returnedData){
-         location.reload();
+        //append gifs section, last created gif
+  	    location.reload();
 		});
   });
 

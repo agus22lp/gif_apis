@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_09_05_181259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "giphies", force: :cascade do |t|
+    t.string "api_id"
+    t.string "slug"
+    t.string "url"
+    t.string "bitly_url"
+    t.string "embed_url"
+    t.string "username"
+    t.string "source"
+    t.string "source_tld"
+    t.string "source_post_url"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

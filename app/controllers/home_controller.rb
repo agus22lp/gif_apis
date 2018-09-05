@@ -21,10 +21,8 @@ class HomeController < ApplicationController
   end
 
   def upload
-  	filename = File.dirname(__FILE__) + '/../../txt/videos.txt'
-    response = Giphy.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
+  	saved = Giphy.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
     
-  	open(filename, 'a') { |f| f << "\n " + response }
-  	render json: { status: 'ok' }
+  	render json: { status: saved }
   end
 end

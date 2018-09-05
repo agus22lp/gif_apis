@@ -1,14 +1,16 @@
-class Giphy
-  include HTTParty
-  base_uri 'https://upload.giphy.com'
+class Giphy < ApplicationRecord
   #debug_output $stdout # <= will spit out all request details to the console
-  GIPHY_URL = 'https://giphy.com/gifs/'
+  #GIPHY_URL = 'https://giphy.com/gifs/'
 
   def self.import(source, trim)
-    response = post("/v1/gifs", { query: { source_image_url: source, api_key: TestGif::Application.credentials.giphy }})
-    GIPHY_URL + response.parsed_response["data"]["id"] + '/html5'
+    response = HTTParty.post("https://giphy.com/gifs/v1/gifs", { query: { source_image_url: source, api_key: TestGif::Application.credentials.giphy }})
+    data = HTTParty.get("https://api.giphy.com/v1/gifs/#{response["id"]}", { query: { api_key: TestGif::Application.credentials.giphy }}).parsed_response["data"]
+
+    self.create(api_id: data["id"], slug: data["slug"], url: data["url"], bitly_url: data["bitly_url"], embed_url: data["embed_url"], username: data["username"],
+                source: data["source"], source_tld: data["source_tld"], source_post_url: data["source_post_url"], title: data["title"])
   end
 end
+
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"
 # {
 #   "success": {
@@ -20,5 +22,5 @@ end
 #       "jpg": "https://j.gifs.com/APVWzz.jpg",
 #       "mp4": "https://j.gifs.com/APVWzz.mp4"
 #     }
-#   }
+#   }Giphy
 # }
