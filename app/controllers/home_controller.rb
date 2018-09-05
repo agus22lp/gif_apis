@@ -2,12 +2,7 @@ class HomeController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
   def index
-  	filename = File.dirname(__FILE__) + '/../../txt/videos.txt'
-  	
-  	@movies = []
-  	File.readlines(filename).each do |line|
-  		@movies << line
-		end
+  	@gifs = Giphy.all
   end
 
   def video_info

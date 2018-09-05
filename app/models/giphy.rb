@@ -9,6 +9,10 @@ class Giphy < ApplicationRecord
     self.create(api_id: data["id"], slug: data["slug"], url: data["url"], bitly_url: data["bitly_url"], embed_url: data["embed_url"], username: data["username"],
                 source: data["source"], source_tld: data["source_tld"], source_post_url: data["source_post_url"], title: data["title"])
   end
+
+  def html5_url
+    "https://media.giphy.com/media/#{api_id}/giphy.gif"
+  end
 end
 
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"
