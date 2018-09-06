@@ -1,12 +1,28 @@
 class GifsDotCom
-  include HTTParty
-  base_uri 'https://api.gifs.com'
+  #include HTTParty
+  #base_uri 'https://api.gifs.com'
   #debug_output $stdout # <= will spit out all request details to the console
 
+  #def self.import(source, trim)
+  #  post("/media/import", { body: { source: source, trim: trim }.to_json, headers: { 'Gifs-API-Key' => TestGif::Application.credentials.gifs_dot_com,
+  #    'Content-Type' => 'application/json' }}).parsed_response["success"]["files"]["gif"]
+  #end
+
+
+
   def self.import(source, trim)
-    post("/media/import", { body: { source: source, trim: trim }.to_json, headers: { 'Gifs-API-Key' => TestGif::Application.credentials.gifs_dot_com,
-      'Content-Type' => 'application/json' }}).parsed_response["success"]["files"]["gif"]
+    # trim: trim /we don't have trim
+    data = HTTParty.post("https://api.gifs.com/media/import", { body: { source: source, trim: trim}.to_json,
+      headers: { 'Gifs-API-Key' => TestGif::Application.credentials.gifs_dot_com, 'Content-Type' => 'application/json' }})
+
+    api_id = URI.parse(data.parsed_response['success']['page']).path.split('/').last
+    self.create(api_id: api_id, url_gif: data.parsed_response['success']['files']['gif'], url_mp4: data.parsed_response['success']['files']['mp4'])
   end
+
+  def html5_url
+    "https://media.giphy.com/media/#{api_id}/giphy.gif"
+  end
+
 end
 # curl -X POST -H "Gifs-API-Key: gifs56d63999f0f34" -H "Content-Type: application/json" -d '{ "source": "https://www.youtube.com/watch?v=jhyANGHDDH8", "trim": { "start": 118, "end": 122 } }' "https://api.gifs.com/media/import"
 # {
