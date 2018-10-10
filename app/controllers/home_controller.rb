@@ -2,8 +2,8 @@ class HomeController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
   def index
-  	#@gifs = Giphy.all
-    @gifs = Gif.all
+  	@gifs = Giphy.all
+    #@gifs = Gif.all
   end
 
   def video_info
@@ -17,8 +17,8 @@ class HomeController < ApplicationController
   end
 
   def upload
-    saved = Gif.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
-    #saved = Giphy.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
+    #saved = Gif.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
+    saved = Giphy.import(params[:url], { start: params[:start].to_i, end: params[:end].to_i })
     
   	render json: { status: saved }
   end
